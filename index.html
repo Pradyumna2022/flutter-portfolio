@@ -1,607 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Pradyumna Vishwakarma — Flutter Developer building production-ready mobile applications with Flutter, Dart, Firebase and REST APIs.">
+<title>Pradyumna Vishwakarma | Flutter Developer</title>
 
-  <title>Pradyumna Vishwakarma | Flutter Developer</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-  <meta
-    name="description"
-    content="Pradyumna Vishwakarma - Flutter Developer specializing in Flutter, Dart, Firebase and REST APIs."
-  >
+:root{
+  --bg:#050816;
+  --bg2:#0a1022;
+  --card:rgba(15,23,42,.58);
+  --card2:rgba(20,30,55,.72);
+  --line:rgba(148,163,184,.14);
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --blue:#5ea7ff;
+  --violet:#8b7cff;
+  --cyan:#54e7ff;
+  --green:#55e6a5;
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,system-ui,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 15%,rgba(94,167,255,.12),transparent 25%),
+    radial-gradient(circle at 85% 20%,rgba(139,124,255,.12),transparent 25%),
+    radial-gradient(circle at 50% 90%,rgba(84,231,255,.06),transparent 30%),
+    var(--bg);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:55px 55px;
+  mask-image:linear-gradient(to bottom,black,transparent 80%);
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(var(--max),92%);margin:auto}
+nav{
+  position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(22px);
+  background:rgba(5,8,22,.68);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between}
+.logo{
+  font-family:"Space Grotesk";font-size:23px;font-weight:700;letter-spacing:-1px
+}
+.logo span{color:var(--blue)}
+.nav-links{display:flex;gap:28px;list-style:none;color:#b8c5d8;font-size:14px}
+.nav-links a{transition:.25s}
+.nav-links a:hover{color:#fff}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+.hero{min-height:calc(100vh - 76px);display:flex;align-items:center;padding:80px 0 100px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+.badge{
+  display:inline-flex;align-items:center;gap:9px;padding:9px 14px;border-radius:999px;
+  border:1px solid rgba(94,167,255,.25);background:rgba(94,167,255,.07);
+  color:#bdddff;font-size:13px;font-weight:700;margin-bottom:24px
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 15px var(--green)}
+h1{
+  font-family:"Space Grotesk";font-size:clamp(48px,7vw,82px);line-height:.99;
+  letter-spacing:-4px;margin-bottom:25px
+}
+.gradient{
+  background:linear-gradient(100deg,#fff 10%,#83bdff 48%,#9d8cff 85%);
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.hero-copy{font-size:18px;color:var(--muted);max-width:690px;margin-bottom:30px}
+.hero-copy strong{color:#e2e8f0}
+.buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:13px 19px;border-radius:11px;
+  border:1px solid var(--line);font-weight:700;font-size:14px;transition:.25s
+}
+.btn:hover{transform:translateY(-3px);border-color:rgba(94,167,255,.4)}
+.btn-primary{
+  border:0;background:linear-gradient(135deg,var(--blue),var(--violet));
+  box-shadow:0 12px 35px rgba(94,167,255,.2)
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+.hero-visual{position:relative;min-height:460px;display:grid;place-items:center}
+.orb{
+  position:absolute;border-radius:50%;filter:blur(2px);animation:float 6s ease-in-out infinite
+}
+.orb.one{width:230px;height:230px;background:rgba(94,167,255,.16);top:40px;right:20px}
+.orb.two{width:160px;height:160px;background:rgba(139,124,255,.13);bottom:40px;left:15px;animation-delay:-2s}
+@keyframes float{50%{transform:translateY(-18px)}}
+.device{
+  width:min(390px,90vw);height:390px;border:1px solid rgba(255,255,255,.13);
+  border-radius:34px;background:linear-gradient(145deg,rgba(21,35,61,.9),rgba(8,15,31,.78));
+  box-shadow:0 35px 100px rgba(0,0,0,.4),inset 0 1px rgba(255,255,255,.1);
+  position:relative;overflow:hidden;padding:20px;transform:rotate(2deg)
+}
+.device:after{
+  content:"";position:absolute;width:240px;height:240px;right:-80px;top:-80px;
+  border-radius:50%;background:rgba(94,167,255,.13);filter:blur(20px)
+}
+.window{height:100%;border:1px solid var(--line);border-radius:22px;background:#080f1e;padding:18px}
+.window-top{display:flex;gap:7px;margin-bottom:22px}
+.wdot{width:9px;height:9px;border-radius:50%;background:#334155}
+.code{font-family:ui-monospace,SFMono-Regular,monospace;font-size:13px;line-height:2;color:#91a5bd}
+.code .c1{color:#62b4ff}.code .c2{color:#a996ff}.code .c3{color:#65e6b0}
+.floating{
+  position:absolute;padding:13px 15px;border:1px solid var(--line);border-radius:14px;
+  background:rgba(11,20,38,.86);backdrop-filter:blur(15px);font-size:12px;font-weight:700;
+  box-shadow:0 15px 40px rgba(0,0,0,.25)
+}
+.f1{top:55px;left:0}.f2{right:-8px;bottom:72px}.f3{left:30px;bottom:5px}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #0b0f19;
-      color: #f5f7fb;
-      line-height: 1.6;
-    }
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:38px}
+.stat{padding:18px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.025)}
+.stat strong{display:block;font-family:"Space Grotesk";font-size:27px}
+.stat span{color:var(--muted);font-size:12px}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+section{padding:100px 0;border-top:1px solid var(--line);position:relative}
+.section-head{margin-bottom:38px}
+.section-kicker{color:#78b9ff;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.section-title{font-family:"Space Grotesk";font-size:39px;letter-spacing:-1.5px}
+.section-title span{color:var(--blue)}
+.section-sub{color:var(--muted);max-width:680px;margin-top:8px}
 
-    .container {
-      width: min(1100px, 92%);
-      margin: auto;
-    }
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.glass{
+  padding:28px;border:1px solid var(--line);border-radius:20px;
+  background:linear-gradient(145deg,rgba(16,28,49,.68),rgba(9,16,31,.58));
+}
+.about{color:#a9b7c9;font-size:16px}
+.highlights{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.highlight{padding:17px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid var(--line)}
+.highlight b{display:block;margin-bottom:3px}.highlight small{color:var(--muted)}
 
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(11, 15, 25, 0.95);
-      border-bottom: 1px solid #202838;
-    }
+.skills{display:flex;flex-wrap:wrap;gap:10px}
+.skill{
+  padding:11px 15px;border-radius:11px;border:1px solid var(--line);
+  background:rgba(255,255,255,.035);color:#dbeafe;font-size:13px;font-weight:600
+}
+.skill:hover{border-color:rgba(94,167,255,.38);background:rgba(94,167,255,.06)}
 
-    .nav-inner {
-      min-height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+.timeline{display:grid;gap:17px}
+.experience-card{
+  padding:27px;border:1px solid var(--line);border-radius:20px;
+  background:linear-gradient(145deg,rgba(16,29,51,.7),rgba(8,16,31,.64));
+  transition:.25s
+}
+.experience-card:hover{transform:translateY(-3px);border-color:rgba(94,167,255,.3)}
+.experience-top{display:flex;justify-content:space-between;gap:20px}
+.experience-card h3{font-size:20px}
+.muted{color:var(--muted);font-size:13px}
+.date{color:#9ecaff;font-size:12px;white-space:nowrap}
+.experience-card p{color:#9caec2;margin-top:14px}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}
+.tag{
+  font-size:11px;padding:4px 8px;border-radius:999px;
+  color:#b9d8ff;background:rgba(94,167,255,.07);border:1px solid rgba(94,167,255,.14)
+}
 
-    .logo {
-      font-size: 22px;
-      font-weight: 700;
-    }
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
+.project-card{
+  position:relative;overflow:hidden;padding:26px;border:1px solid var(--line);
+  border-radius:20px;background:linear-gradient(145deg,rgba(17,30,53,.72),rgba(8,15,29,.7));
+  transition:.28s
+}
+.project-card:before{
+  content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(94,167,255,.08),transparent 45%);
+  opacity:0;transition:.28s
+}
+.project-card:hover{transform:translateY(-5px);border-color:rgba(94,167,255,.32)}
+.project-card:hover:before{opacity:1}
+.project-card>*{position:relative}
+.project-icon{font-size:25px;margin-bottom:12px}
+.project-card h3{font-size:20px;margin-bottom:4px}
+.project-card p{color:#9caec2;margin-top:14px;font-size:14px}
+.project-links{margin-top:18px;display:flex;gap:16px}
+.project-links a{color:#8fc5ff;font-weight:700;font-size:13px}
 
-    .logo span {
-      color: #6c8cff;
-    }
+.contact-box{
+  border:1px solid var(--line);border-radius:25px;padding:38px;
+  background:
+    radial-gradient(circle at 90% 20%,rgba(139,124,255,.13),transparent 28%),
+    linear-gradient(135deg,rgba(94,167,255,.07),rgba(255,255,255,.02))
+}
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:25px}
+.contact-item{padding:18px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.12)}
+.contact-item small{display:block;color:#71839b;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+.contact-item a{display:block;margin-top:4px;color:#cbe4ff;word-break:break-word;font-size:14px}
 
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-      font-size: 14px;
-    }
+footer{padding:30px 0;color:#71839b;text-align:center;border-top:1px solid var(--line);font-size:13px}
 
-    .nav-links a:hover {
-      color: #6c8cff;
-    }
-
-    .hero {
-      min-height: 88vh;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-content {
-      max-width: 780px;
-    }
-
-    .tag {
-      color: #6c8cff;
-      font-weight: 600;
-      margin-bottom: 15px;
-    }
-
-    h1 {
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1.05;
-      margin-bottom: 20px;
-    }
-
-    h1 span {
-      color: #6c8cff;
-    }
-
-    .hero p {
-      color: #aeb7c8;
-      font-size: 19px;
-      max-width: 700px;
-      margin-bottom: 30px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 12px 20px;
-      border-radius: 8px;
-      border: 1px solid #303b52;
-      display: inline-block;
-      font-weight: 600;
-    }
-
-    .btn-primary {
-      background: #6c8cff;
-      color: #fff;
-      border-color: #6c8cff;
-    }
-
-    section {
-      padding: 85px 0;
-      border-top: 1px solid #202838;
-    }
-
-    .section-title {
-      font-size: 34px;
-      margin-bottom: 35px;
-    }
-
-    .section-title span {
-      color: #6c8cff;
-    }
-
-    .about-text {
-      color: #aeb7c8;
-      max-width: 800px;
-      font-size: 17px;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .skill {
-      background: #141b2a;
-      border: 1px solid #29344a;
-      padding: 10px 15px;
-      border-radius: 7px;
-      color: #dbe2f0;
-    }
-
-    .experience-card,
-    .project-card {
-      background: #111827;
-      border: 1px solid #263149;
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 20px;
-    }
-
-    .experience-card h3,
-    .project-card h3 {
-      margin-bottom: 8px;
-    }
-
-    .muted {
-      color: #8995aa;
-      margin-bottom: 12px;
-    }
-
-    .experience-card p,
-    .project-card p {
-      color: #aeb7c8;
-    }
-
-    .project-links {
-      margin-top: 18px;
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .project-links a {
-      color: #6c8cff;
-      font-weight: 600;
-    }
-
-    .contact-box {
-      background: #111827;
-      border: 1px solid #263149;
-      border-radius: 12px;
-      padding: 30px;
-    }
-
-    .contact-box p {
-      color: #aeb7c8;
-      margin: 8px 0;
-    }
-
-    footer {
-      border-top: 1px solid #202838;
-      padding: 30px 0;
-      color: #8995aa;
-      text-align: center;
-    }
-
-    @media (max-width: 700px) {
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        min-height: 75vh;
-      }
-
-      section {
-        padding: 60px 0;
-      }
-    }
-  </style>
+@media(max-width:850px){
+  .nav-links{display:none}
+  .hero{padding-top:65px}
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .hero-visual{min-height:370px}
+  .projects{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  h1{font-size:48px;letter-spacing:-2.5px}
+  .stats,.contact-grid,.highlights{grid-template-columns:1fr}
+  .experience-top{flex-direction:column}
+  .date{white-space:normal}
+  section{padding:75px 0}
+  .device{height:330px}
+}
+</style>
 </head>
 
 <body>
+<nav>
+  <div class="container nav-inner">
+    <a class="logo" href="#">Pradyumna<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <nav>
-    <div class="container nav-inner">
-
-      <div class="logo">
-        Pradyumna<span>.</span>
+<main>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="badge"><span class="dot"></span> Available for Flutter opportunities</div>
+      <h1>Flutter Developer<br><span class="gradient">building apps that ship.</span></h1>
+      <p class="hero-copy">
+        Hi, I'm <strong>Pradyumna Vishwakarma</strong> — a Flutter Developer with
+        <strong>3+ years of hands-on experience</strong> building mobile applications,
+        integrating APIs and Firebase, implementing payments, and taking Android apps to production.
+      </p>
+      <div class="buttons">
+        <a class="btn btn-primary" href="#projects">Explore My Work ↗</a>
+        <a class="btn" href="mailto:Pradyumna9956vish@gmail.com">Hire Me</a>
+        <a class="btn" href="https://github.com/Pradyumna2022" target="_blank">GitHub ↗</a>
       </div>
-
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-
+      <div class="stats">
+        <div class="stat"><strong>3+</strong><span>Years Experience</span></div>
+        <div class="stat"><strong>Live Apps</strong><span>Production Experience</span></div>
+        <div class="stat"><strong>End-to-End</strong><span>Build → Release</span></div>
+      </div>
     </div>
-  </nav>
 
-  <main>
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-content">
-
-          <div class="tag">FLUTTER DEVELOPER</div>
-
-          <h1>
-            Hi, I'm <span>Pradyumna</span>
-          </h1>
-
-          <p>
-            I build cross-platform mobile applications using Flutter and Dart,
-            with experience in Firebase, REST APIs and modern state management.
-          </p>
-
-          <div class="buttons">
-            <a class="btn btn-primary" href="#projects">
-              View Projects
-            </a>
-
-            <a
-              class="btn"
-              href="https://github.com/Pradyumna2022"
-              target="_blank"
-            >
-              GitHub
-            </a>
-
-            <a
-              class="btn"
-              href="https://www.linkedin.com/in/pradyumn-vishwakarma-1129b9232"
-              target="_blank"
-            >
-              LinkedIn
-            </a>
+    <div class="hero-visual">
+      <div class="orb one"></div><div class="orb two"></div>
+      <div class="device">
+        <div class="window">
+          <div class="window-top"><span class="wdot"></span><span class="wdot"></span><span class="wdot"></span></div>
+          <div class="code">
+            <div><span class="c2">class</span> <span class="c1">FlutterDeveloper</span> {</div>
+            <div>&nbsp;&nbsp;<span class="c2">final</span> skills = [</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c3">'Flutter'</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c3">'Firebase'</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c3">'REST APIs'</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c3">'GetX / BLoC'</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c3">'Payments'</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c3">'Play Store'</span></div>
+            <div>&nbsp;&nbsp;];</div>
+            <div>}</div>
+            <br>
+            <div><span class="c1">build</span>(<span class="c3">beautifulApps</span>);</div>
           </div>
-
         </div>
       </div>
-    </section>
+      <div class="floating f1">⚡ Flutter + Dart</div>
+      <div class="floating f2">🚀 Production Release</div>
+      <div class="floating f3">🔥 Firebase + APIs</div>
+    </div>
+  </div>
+</section>
 
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="container">
-
-        <h2 class="section-title">
-          About <span>Me</span>
-        </h2>
-
-        <p class="about-text">
-          I'm a Flutter Developer focused on building clean, responsive and
-          functional mobile applications. I enjoy converting requirements and
-          designs into practical applications and working with APIs, Firebase
-          and state management.
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Who I am</div>
+      <h2 class="section-title">More than just <span>code.</span></h2>
+      <p class="section-sub">I focus on turning requirements into practical, responsive and production-ready mobile applications.</p>
+    </div>
+    <div class="about-grid">
+      <div class="glass">
+        <p class="about">
+          I'm a Flutter Developer focused on clean UI, API integration, Firebase,
+          state management, debugging and real-world application delivery. I have
+          worked on company projects as well as independent freelance applications,
+          including live apps published on Google Play.
         </p>
-
       </div>
-    </section>
-
-
-    <!-- SKILLS -->
-    <section id="skills">
-      <div class="container">
-
-        <h2 class="section-title">
-          Tech <span>Stack</span>
-        </h2>
-
-        <div class="skills">
-
-          <div class="skill">Flutter</div>
-          <div class="skill">Dart</div>
-          <div class="skill">Firebase</div>
-          <div class="skill">REST APIs</div>
-          <div class="skill">GetX</div>
-          <div class="skill">BLoC / Cubit</div>
-          <div class="skill">Git</div>
-          <div class="skill">GitHub</div>
-          <div class="skill">Android</div>
-          <div class="skill">iOS</div>
-          <div class="skill">PostgreSQL</div>
-
-        </div>
-
+      <div class="glass highlights">
+        <div class="highlight"><b>📱 Cross-platform</b><small>Flutter & Dart development</small></div>
+        <div class="highlight"><b>🔌 Integrations</b><small>REST APIs, Firebase & payments</small></div>
+        <div class="highlight"><b>🚀 Release</b><small>Android production deployment</small></div>
+        <div class="highlight"><b>🧩 State Management</b><small>GetX, BLoC / Cubit</small></div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
+<section id="skills">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">My toolkit</div>
+      <h2 class="section-title">Tech <span>Arsenal</span></h2>
+      <p class="section-sub">Technologies I use across Flutter application development.</p>
+    </div>
+    <div class="skills">
+      <span class="skill">Flutter</span><span class="skill">Dart</span><span class="skill">Firebase</span>
+      <span class="skill">REST APIs</span><span class="skill">GetX</span><span class="skill">BLoC / Cubit</span>
+      <span class="skill">Git</span><span class="skill">GitHub</span><span class="skill">Android</span>
+      <span class="skill">iOS</span><span class="skill">PostgreSQL</span><span class="skill">Hive</span>
+      <span class="skill">Postman</span><span class="skill">Google Play Console</span><span class="skill">Firebase Console</span>
+    </div>
+  </div>
+</section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience">
-      <div class="container">
+<section id="experience">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Career</div>
+      <h2 class="section-title">Work <span>Experience</span></h2>
+      <p class="section-sub">Hands-on Flutter development across professional and independent projects.</p>
+    </div>
 
-        <h2 class="section-title">
-          Work <span>Experience</span>
-        </h2>
-
-
-        <div class="experience-card">
-
-          <h3>
-            Software Developer — Promatics Technologies
-          </h3>
-
-          <div class="muted">
-            Flutter Development
-          </div>
-
-          <p>
-            Worked on Flutter application development, UI implementation,
-            API integration, Firebase-related functionality, bug fixing and
-            application improvements.
-          </p>
-
+    <div class="timeline">
+      <article class="experience-card">
+        <div class="experience-top">
+          <div><h3>Flutter Developer — SDS Softwares</h3><div class="muted">Flutter Development</div></div>
+          <div class="date">2025 – Present</div>
         </div>
+        <p>Working on Flutter applications, UI improvements, API integration, debugging, feature implementation and production application improvements.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">REST APIs</span><span class="tag">Firebase</span></div>
+      </article>
 
-
-        <div class="experience-card">
-
-          <h3>
-            Flutter Developer — SDS Softwares
-          </h3>
-
-          <div class="muted">
-            Flutter Development
-          </div>
-
-          <p>
-            Working on Flutter applications, UI improvements, API integration,
-            debugging and feature implementation.
-          </p>
-
+      <article class="experience-card">
+        <div class="experience-top">
+          <div><h3>Flutter Developer — Promatics Technologies</h3><div class="muted">Punjab · On-site</div></div>
+          <div class="date">May 2024 – Dec 2024</div>
         </div>
+        <p>Worked on Flutter and Dart-based mobile applications, REST API and Firebase integration, UI implementation, feature development, bug fixing and Git/GitHub collaboration.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Firebase</span><span class="tag">Git</span></div>
+      </article>
 
+      <article class="experience-card">
+        <div class="experience-top">
+          <div><h3>Freelance Flutter Developer</h3><div class="muted">Remote · Independent Projects</div></div>
+          <div class="date">2024 – Present</div>
+        </div>
+        <p>Developing Flutter applications for independent projects and clients, including UI development, API integration, debugging, feature development, testing and application delivery.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">APIs</span><span class="tag">Firebase</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Selected work</div>
+      <h2 class="section-title">Projects that <span>matter.</span></h2>
+      <p class="section-sub">A mix of production applications and open-source Flutter projects.</p>
+    </div>
+
+    <div class="projects">
+      <article class="project-card">
+        <div class="project-icon">🌙</div><h3>LifeMap AI</h3><div class="muted">Live Production App</div>
+        <p>Flutter application for personalized palm reading and astrology insights. Worked on UI updates, features, one-time purchase packages, payment integration and Android release/deployment.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Payment</span><span class="tag">Android</span></div>
+        <div class="project-links"><a href="https://play.google.com/store/apps/details?id=com.sds.palm&hl=en_IN" target="_blank">Google Play ↗</a></div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-icon">🧘</div><h3>Nature Yogi</h3><div class="muted">Wellness & Yoga App</div>
+        <p>Flutter-based wellness and yoga application offering online yoga and wellness training, trainer and learner functionality, and wellness and fitness product purchasing.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Wellness</span><span class="tag">E-commerce</span></div>
+        <div class="project-links"><a href="https://play.google.com/store/apps/details?id=com.nature_yogi_trainer" target="_blank">Google Play ↗</a></div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-icon">💬</div><h3>pChat-App</h3><div class="muted">Real-time Chat</div>
+        <p>Real-time one-to-one chat application with Firebase Authentication, Cloud Firestore messaging, chat rooms and live message updates.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Firebase Auth</span><span class="tag">Firestore</span></div>
+        <div class="project-links"><a href="https://github.com/Pradyumna2022/pChat-App" target="_blank">GitHub ↗</a></div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-icon">🛒</div><h3>e_commerce_getx</h3><div class="muted">Flutter E-commerce</div>
+        <p>Flutter e-commerce application demonstrating mobile UI, product handling and GetX-based state management.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">GetX</span><span class="tag">Dart</span></div>
+        <div class="project-links"><a href="https://github.com/Pradyumna2022/e_commerce_getx" target="_blank">GitHub ↗</a></div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-icon">🏥</div><h3>Easy Hospital</h3><div class="muted">Healthcare App</div>
+        <p>Flutter-based hospital application project focused on mobile UI and application screens.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span></div>
+        <div class="project-links"><a href="https://github.com/Pradyumna2022/easy-hospital" target="_blank">GitHub ↗</a></div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-icon">📄</div><h3>Resume Builder</h3><div class="muted">Flutter + Hive</div>
+        <p>Flutter application for creating resumes with local data handling using Hive.</p>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Hive</span></div>
+        <div class="project-links"><a href="https://github.com/Pradyumna2022/resume_builder_hive" target="_blank">GitHub ↗</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-box">
+      <div class="section-kicker">Let's work together</div>
+      <h2 class="section-title">Have a Flutter project? <span>Let's talk.</span></h2>
+      <p class="section-sub">Open to freelance projects and Flutter development opportunities.</p>
+      <div class="contact-grid">
+        <div class="contact-item"><small>Email</small><a href="mailto:Pradyumna9956vish@gmail.com">Pradyumna9956vish@gmail.com</a></div>
+        <div class="contact-item"><small>Phone</small><a href="tel:+917786920413">+91 7786920413</a></div>
+        <div class="contact-item"><small>GitHub</small><a href="https://github.com/Pradyumna2022" target="_blank">github.com/Pradyumna2022</a></div>
+        <div class="contact-item"><small>LinkedIn</small><a href="https://www.linkedin.com/in/pradyumn-vishwakarma-1129b9232" target="_blank">linkedin.com/in/pradyumn-vishwakarma-1129b9232</a></div>
       </div>
-    </section>
-
-
-    <!-- PROJECTS -->
-    <section id="projects">
-      <div class="container">
-
-        <h2 class="section-title">
-          Featured <span>Projects</span>
-        </h2>
-
-
-        <!-- LIFEMAP AI -->
-        <div class="project-card">
-
-          <h3>
-            LifeMap AI
-          </h3>
-
-          <p>
-            Live Flutter application focused on personalized palm reading
-            and astrology insights. Worked on UI updates, feature
-            implementation, one-time purchase packages and payment
-            integration. Also handled the Android release and deployment
-            to Google Play Store.
-          </p>
-
-          <div class="project-links">
-
-            <a
-              href="https://play.google.com/store/apps/details?id=com.sds.palm&hl=en_IN"
-              target="_blank"
-            >
-              View on Google Play →
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- NATURE YOGI -->
-        <div class="project-card">
-
-          <h3>
-            Nature Yogi
-          </h3>
-
-          <p>
-            Flutter-based wellness and yoga application offering online yoga
-            and wellness training, trainer and learner features, and wellness
-            and fitness product purchasing.
-          </p>
-
-          <div class="project-links">
-
-            <a
-              href="https://play.google.com/store/apps/details?id=com.nature_yogi_trainer"
-              target="_blank"
-            >
-              View on Google Play →
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- PCHAT -->
-        <div class="project-card">
-
-          <h3>
-            pChat-App
-          </h3>
-
-          <p>
-            Real-time chat application built with Flutter and Firebase,
-            featuring authentication, Cloud Firestore messaging,
-            chat rooms and real-time message updates.
-          </p>
-
-          <div class="project-links">
-
-            <a
-              href="https://github.com/Pradyumna2022/pChat-App"
-              target="_blank"
-            >
-              View on GitHub →
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- E-COMMERCE -->
-        <div class="project-card">
-
-          <h3>
-            e_commerce_getx
-          </h3>
-
-          <p>
-            Flutter e-commerce application demonstrating mobile UI,
-            product handling and GetX-based state management.
-          </p>
-
-          <div class="project-links">
-
-            <a
-              href="https://github.com/Pradyumna2022/e_commerce_getx"
-              target="_blank"
-            >
-              View on GitHub →
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- EASY HOSPITAL -->
-        <div class="project-card">
-
-          <h3>
-            Easy Hospital
-          </h3>
-
-          <p>
-            Flutter-based hospital application project focused on
-            mobile UI and application screens.
-          </p>
-
-          <div class="project-links">
-
-            <a
-              href="https://github.com/Pradyumna2022/easy-hospital"
-              target="_blank"
-            >
-              View on GitHub →
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- RESUME BUILDER -->
-        <div class="project-card">
-
-          <h3>
-            Resume Builder
-          </h3>
-
-          <p>
-            Flutter application for creating resumes with local data
-            handling using Hive.
-          </p>
-
-          <div class="project-links">
-
-            <a
-              href="https://github.com/Pradyumna2022/resume_builder_hive"
-              target="_blank"
-            >
-              View on GitHub →
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container">
-
-        <h2 class="section-title">
-          Let's <span>Connect</span>
-        </h2>
-
-        <div class="contact-box">
-
-          <p>
-            📧 Email:
-            Pradyumna9956vish@gmail.com
-          </p>
-
-          <p>
-            💻 GitHub:
-            github.com/Pradyumna2022
-          </p>
-
-          <p>
-            🔗 LinkedIn:
-            https://www.linkedin.com/in/pradyumn-vishwakarma-1129b9232
-          </p>
-
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-
-  <footer>
-    © 2026 Pradyumna Vishwakarma · Flutter Developer
-  </footer>
-
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 Pradyumna Vishwakarma · Flutter Developer</footer>
 </body>
 </html>
